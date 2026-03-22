@@ -1,8 +1,10 @@
 # Pwalker.me — AI Agent Instructions
 
-> This file is read by **OpenAI Codex**, **Gemini Code Assist**, and any other AI coding
-> agent that follows the `AGENTS.md` convention.  GitHub Copilot reads
-> `.github/copilot-instructions.md` instead; see that file for Copilot-specific guidance.
+> **Single source of truth** for all AI coding agents.
+> This file is read by **GitHub Copilot** (via `.github/copilot-instructions.md`),
+> **Gemini Code Assist** (via `.gemini/styleguide.md`), **OpenAI Codex**, and any other
+> agent that follows the `AGENTS.md` convention.  The tool-specific files in
+> `.github/` and `.gemini/` simply point here — all guidelines live in this file.
 
 ---
 
