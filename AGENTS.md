@@ -41,7 +41,7 @@
    - A **job test** (`test/jobs/`) for every new or changed Solid Queue job.
    - Run the full test suite with `bin/rails test && bin/rails test:system` before submitting.
 
-3. **Do not break existing tests.**  Run `bin/rails test` after every change.
+3. **Do not break existing tests.**  Run `bin/rails test` after every completed feature or update.
 
 4. **Keep controllers thin.**  Business logic belongs in models, service objects
    (`app/services/`), or jobs — not in controllers or views.
