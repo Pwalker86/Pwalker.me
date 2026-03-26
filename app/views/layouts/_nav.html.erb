@@ -1,0 +1,32 @@
+<nav class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div
+    class="
+      mx-auto flex w-full max-w-6xl flex-wrap items-center gap-3 px-5 py-4 text-sm
+      text-slate-700
+    "
+  >
+    <div class="flex space-x-4 items-center">
+      <span class="font-semibold text-slate-900">Pwalker.me</span>
+      <span class="text-slate-400">/</span>
+      <%= link_to "Home",
+      root_path,
+      class:
+        "rounded-full px-3 py-1.5 font-medium text-slate-700 transition hover:bg-slate-100" %>
+      <%= link_to "Style Guide Page",
+      style_guide_path,
+      class:
+        "rounded-full px-3 py-1.5 font-medium text-slate-700 transition hover:bg-slate-100" %>
+    </div>
+    <div class="ml-auto">
+      <% if current_user %>
+        <%= button_to "Sign Out",
+        destroy_user_session_path,
+        method: :delete,
+        class:
+          "rounded-full px-3 py-1.5 font-medium text-slate-700 transition hover:bg-slate-100" %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+      <% end %>
+    </div>
+  </div>
+</nav>

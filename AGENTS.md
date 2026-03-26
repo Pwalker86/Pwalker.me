@@ -12,6 +12,11 @@
 
 **Pwalker.me** is a personal website / blog built with **Ruby on Rails 8**.
 
+### Design system reference
+
+- The canonical visual and responsive design reference is `STYLEGUIDE.md`.
+- For UI, layout, and responsive behavior changes, align implementation with `STYLEGUIDE.md`.
+
 ### Core technology stack
 
 | Layer | Technology |
