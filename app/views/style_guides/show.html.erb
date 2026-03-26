@@ -1,0 +1,158 @@
+<% content_for :title, "Style Guide" %>
+
+<section class="sg-canvas relative w-full overflow-hidden rounded-3xl p-4 sm:p-6 lg:p-10">
+  <div aria-hidden="true" class="pointer-events-none absolute -top-16 right-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,_rgba(245,158,11,0.28)_0%,_rgba(245,158,11,0)_70%)]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-[radial-gradient(circle,_rgba(30,64,175,0.22)_0%,_rgba(30,64,175,0)_70%)]"></div>
+
+  <div class="relative mx-auto max-w-6xl space-y-8 sm:space-y-10 lg:space-y-14">
+    <header class="grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:items-end">
+      <div class="space-y-4">
+        <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-700">Modern Blogging UI Kit</p>
+        <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          A responsive editorial system for phone, tablet, and desktop.
+        </h1>
+        <p class="max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
+          This guide defines typography, spacing, color, motion, and reusable components for article feeds and long-form post pages.
+        </p>
+      </div>
+
+      <div class="sg-surface p-4 sm:p-5">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Active viewport</p>
+        <p class="mt-3 inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-sm font-medium text-slate-800">
+          <span class="md:hidden">Phone layout active</span>
+          <span class="hidden md:inline lg:hidden">Tablet layout active</span>
+          <span class="hidden lg:inline">Desktop layout active</span>
+        </p>
+        <p class="mt-3 text-sm text-slate-600">
+          `sm` 640px+, `md` 768px+, `lg` 1024px+, `xl` 1280px+
+        </p>
+      </div>
+    </header>
+
+    <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Design tokens">
+      <article class="sg-surface p-4 sm:p-5">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Color</h2>
+        <div class="mt-3 flex gap-2">
+          <span class="h-8 w-8 rounded-full bg-slate-900" title="Ink"></span>
+          <span class="h-8 w-8 rounded-full bg-blue-900" title="Primary"></span>
+          <span class="h-8 w-8 rounded-full bg-amber-500" title="Accent"></span>
+          <span class="h-8 w-8 rounded-full border border-slate-300 bg-slate-50" title="Surface"></span>
+        </div>
+      </article>
+
+      <article class="sg-surface p-4 sm:p-5">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Type scale</h2>
+        <p class="mt-3 text-3xl leading-none text-slate-900">36</p>
+        <p class="text-sm text-slate-600">Heading, pull quote, feature callouts.</p>
+      </article>
+
+      <article class="sg-surface p-4 sm:p-5">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Spacing</h2>
+        <p class="mt-3 text-lg text-slate-900">8 / 16 / 24 / 40</p>
+        <p class="text-sm text-slate-600">Use an 8px rhythm, then scale at breakpoints.</p>
+      </article>
+
+      <article class="sg-surface p-4 sm:p-5">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Radius + shadow</h2>
+        <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+          <p class="text-sm text-slate-700">Soft corners with restrained depth.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]" aria-label="Typography and content rhythm">
+      <article class="sg-surface p-5 sm:p-7">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Typography</h2>
+        <h3 class="mt-4 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">Long-form reading needs contrast and air</h3>
+        <p class="mt-4 text-base leading-8 text-slate-700">
+          Body text targets a relaxed 65-75 character line length on desktop and opens up breathing room on tablet while preserving compactness on phones.
+        </p>
+        <blockquote class="mt-6 border-l-4 border-amber-500 pl-4 text-lg italic leading-relaxed text-slate-800">
+          Design for speed and scanning first, then add depth for committed readers.
+        </blockquote>
+        <pre class="mt-6 overflow-x-auto rounded-xl bg-slate-900 p-4 text-sm text-slate-100"><code>article { max-width: 72ch; line-height: 1.8; }
+@media (min-width: 768px) { article { font-size: 1.125rem; } }</code></pre>
+      </article>
+
+      <article class="sg-surface p-5 sm:p-7">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Interaction</h2>
+        <div class="mt-4 space-y-4">
+          <button class="inline-flex items-center rounded-full bg-blue-900 px-5 py-2.5 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
+            Primary action
+          </button>
+          <div>
+            <label class="text-sm font-medium text-slate-700" for="guide-email">Newsletter input</label>
+            <input id="guide-email" type="email" placeholder="reader@example.com" class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-800 shadow-sm placeholder:text-slate-400 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200">
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-900">Rails</span>
+            <span class="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-900">Design</span>
+            <span class="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Writing</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="space-y-4" aria-label="Blog index pattern">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold text-slate-900 sm:text-3xl">Blog index cards</h2>
+        <p class="text-sm text-slate-600">1 column on phone, 2 on tablet, 3 on desktop</p>
+      </div>
+
+      <div class="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <% [
+          { title: "Building with Turbo Frames", category: "Engineering", tone: "blue" },
+          { title: "Writing sharper intros", category: "Craft", tone: "amber" },
+          { title: "Design notes from week 12", category: "Journal", tone: "slate" }
+        ].each do |post| %>
+          <article class="sg-surface group p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"><%= post[:category] %></p>
+            <h3 class="mt-3 text-xl font-semibold leading-snug text-slate-900"><%= post[:title] %></h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-700">Readable excerpts should stay under three lines on phone and four lines on desktop.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="rounded-full px-2.5 py-1 text-xs font-medium <%= post[:tone] == "blue" ? "bg-blue-50 text-blue-900" : post[:tone] == "amber" ? "bg-amber-50 text-amber-900" : "bg-slate-100 text-slate-700" %>">7 min read</span>
+              <span class="text-sm font-medium text-blue-900 group-hover:text-blue-700">Read article</span>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]" aria-label="Article page pattern">
+      <article class="sg-surface p-5 sm:p-7 lg:p-8">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Article layout</p>
+        <h2 class="mt-4 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">From draft notes to polished post</h2>
+        <p class="mt-4 text-base leading-8 text-slate-700">
+          Keep paragraph width narrow, preserve enough white space for side notes on desktop, and collapse extras under the main text on smaller devices.
+        </p>
+        <div class="mt-6 grid gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:grid-cols-2">
+          <div class="rounded-xl bg-white p-4 shadow-sm">
+            <p class="text-xs uppercase tracking-[0.16em] text-slate-500">Phone</p>
+            <p class="mt-2 text-sm text-slate-700">Single column body, sticky bottom actions optional.</p>
+          </div>
+          <div class="rounded-xl bg-white p-4 shadow-sm">
+            <p class="text-xs uppercase tracking-[0.16em] text-slate-500">Tablet</p>
+            <p class="mt-2 text-sm text-slate-700">Body with inline media and balanced gutters.</p>
+          </div>
+          <div class="rounded-xl bg-white p-4 shadow-sm sm:col-span-2">
+            <p class="text-xs uppercase tracking-[0.16em] text-slate-500">Desktop</p>
+            <p class="mt-2 text-sm text-slate-700">Body + contextual aside for TOC, author card, or recent posts.</p>
+          </div>
+        </div>
+      </article>
+
+      <aside class="sg-surface p-5 sm:p-7">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Navigation pattern</h2>
+        <nav class="mt-4 space-y-3 text-sm">
+          <a class="block rounded-lg bg-white px-3 py-2 font-medium text-slate-800 shadow-sm transition hover:bg-slate-100" href="#">Home</a>
+          <a class="block rounded-lg bg-white px-3 py-2 font-medium text-slate-800 shadow-sm transition hover:bg-slate-100" href="#">Articles</a>
+          <a class="block rounded-lg bg-white px-3 py-2 font-medium text-slate-800 shadow-sm transition hover:bg-slate-100" href="#">Topics</a>
+          <a class="block rounded-lg bg-white px-3 py-2 font-medium text-slate-800 shadow-sm transition hover:bg-slate-100" href="#">About</a>
+        </nav>
+        <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          Keep navigation touch targets at least 44px high on phone.
+        </div>
+      </aside>
+    </section>
+  </div>
+</section>

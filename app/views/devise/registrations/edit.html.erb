@@ -1,0 +1,67 @@
+<section class="sg-canvas relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-9">
+  <div aria-hidden="true" class="pointer-events-none absolute -top-14 right-0 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,rgba(245,158,11,0)_70%)]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-12 h-60 w-60 rounded-full bg-[radial-gradient(circle,rgba(30,64,175,0.2)_0%,rgba(30,64,175,0)_70%)]"></div>
+
+  <div class="relative mx-auto max-w-2xl space-y-8">
+    <header class="space-y-3">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Account settings</p>
+      <h2 class="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">Edit <%= resource_name.to_s.humanize %></h2>
+      <p class="text-base leading-8 text-slate-700">Update your account details and security credentials.</p>
+    </header>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-5" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div>
+        <%= f.label :email, class: "text-sm font-medium text-slate-700" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+        </p>
+      <% end %>
+
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <%= f.label :password, class: "text-sm font-medium text-slate-700" %>
+          <p class="text-xs text-slate-500">Leave blank if you do not want to change it</p>
+        </div>
+        <%= f.password_field :password, autocomplete: "new-password", class: "mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+        <% if @minimum_password_length %>
+          <p class="mt-2 text-xs text-slate-500"><%= @minimum_password_length %> characters minimum</p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation, class: "text-sm font-medium text-slate-700" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+      </div>
+
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <%= f.label :current_password, class: "text-sm font-medium text-slate-700" %>
+          <p class="text-xs text-slate-500">Required to confirm account changes</p>
+        </div>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+      </div>
+
+      <div>
+        <%= f.submit "Update", class: "inline-flex min-h-11 w-full items-center justify-center rounded-full bg-blue-900 px-5 py-2.5 text-sm font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" %>
+      </div>
+    <% end %>
+
+    <section class="rounded-2xl border border-red-200 bg-red-50 p-4 sm:p-5">
+      <h3 class="text-lg font-semibold text-red-900">Cancel my account</h3>
+      <p class="mt-2 text-sm leading-relaxed text-red-800">This action is permanent and removes access to your account.</p>
+      <div class="mt-4">
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "inline-flex min-h-11 items-center justify-center rounded-full border border-red-300 bg-white px-5 py-2.5 text-sm font-medium text-red-800 transition hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700" %>
+      </div>
+    </section>
+
+    <p>
+      <%= link_to "Back", :back, class: "inline-flex items-center text-sm font-medium text-blue-900 transition hover:text-blue-700" %>
+    </p>
+  </div>
+</section>
