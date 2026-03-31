@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, -> { order(:name) }, through: :post_tags
 
   has_rich_text :body
 
@@ -19,6 +21,19 @@ class Post < ApplicationRecord
 
   def unpublished?
     !published?
+  end
+
+  def tag_list
+    @tag_list || tags.pluck(:name).join(", ")
+  end
+
+  def update_tags_from_list(raw_tag_list)
+    normalized_names = self.class.parse_tag_list(raw_tag_list)
+    self.tags = normalized_names.map { |name| Tag.find_or_create_by!(name: name) }
+  end
+
+  def self.parse_tag_list(raw_tag_list)
+    raw_tag_list.to_s.split(",").map { |tag| tag.strip.downcase }.reject(&:blank?).uniq
   end
 
   private

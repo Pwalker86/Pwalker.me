@@ -43,4 +43,18 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal "building-with-turbo-frames-2", post.slug
   end
+
+  test "parses and normalizes tag list" do
+    tags = Post.parse_tag_list(" Rails, hotwire, rails, , Design ")
+
+    assert_equal [ "rails", "hotwire", "design" ], tags
+  end
+
+  test "updates tags from comma-separated list" do
+    post = posts(:draft_post)
+
+    post.update_tags_from_list("Rails, turbo,  rails, ")
+
+    assert_equal [ "rails", "turbo" ], post.tags.order(:name).pluck(:name)
+  end
 end

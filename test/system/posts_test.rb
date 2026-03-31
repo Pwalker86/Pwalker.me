@@ -13,11 +13,14 @@ class PostsTest < ApplicationSystemTestCase
 
     fill_in "Title", with: "Systems Thinking for Rails"
     fill_in_rich_text_area "<div><p>Draft body for a new article.</p></div>"
+    fill_in "Tags", with: "rails, hotwire, rails"
     uncheck "Publish this post"
     click_button "Create Post"
 
     assert_text "Draft saved."
     assert_text "This draft is private and visible only to you."
+    assert_text "rails"
+    assert_text "hotwire"
     assert_current_path post_path(Post.order(:created_at).last)
 
     click_link "Edit post"

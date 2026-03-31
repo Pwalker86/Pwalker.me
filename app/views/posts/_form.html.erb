@@ -27,6 +27,15 @@
     </div>
   </div>
 
+  <div>
+    <%= form.label :tag_list, "Tags", class: "text-sm font-medium text-slate-700" %>
+    <%= form.text_field :tag_list,
+    value: post.tag_list,
+    placeholder: "rails, hotwire, design",
+    class: "mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+    <p class="mt-2 text-sm text-slate-600">Separate tags with commas. Tags are normalized and deduplicated automatically.</p>
+  </div>
+
   <div class="rounded-2xl border border-slate-200 bg-white/80 px-4 py-4">
     <div class="flex items-start gap-3">
       <%= form.check_box :published, class: "mt-1 h-4 w-4 rounded border-slate-300 text-blue-900 focus:ring-blue-300" %>

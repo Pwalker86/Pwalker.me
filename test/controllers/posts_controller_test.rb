@@ -60,7 +60,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         post: {
           title: "New Draft From Test",
           body: "Draft body copy",
-          published: "0"
+          published: "0",
+          tag_list: "rails, testing, rails"
         }
       }
     end
@@ -69,6 +70,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @user, created_post.user
     assert_equal "new-draft-from-test", created_post.slug
     assert_not created_post.published?
+    assert_equal [ "rails", "testing" ], created_post.tags.order(:name).pluck(:name)
     assert_redirected_to post_url(created_post)
   end
 
@@ -79,12 +81,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       post: {
         title: @draft_post.title,
         body: "Updated body",
-        published: "1"
+        published: "1",
+        tag_list: "updated, rails"
       }
     }
 
     assert_redirected_to post_url(@draft_post)
     assert @draft_post.reload.published?
+    assert_equal [ "rails", "updated" ], @draft_post.tags.order(:name).pluck(:name)
   end
 
   test "non owners cannot edit another users draft" do
