@@ -34,6 +34,16 @@ class PostsTest < ApplicationSystemTestCase
     assert_text "Systems Thinking for Rails"
   end
 
+  test "clicking a tag chip opens filtered results" do
+    visit post_path(posts(:published_post))
+
+    click_link "rails"
+
+    assert_current_path posts_path(tag: "rails")
+    assert_text "Showing results for tag"
+    assert_text "Building with Turbo Frames"
+  end
+
   private
 
   def fill_in_rich_text_area(html)

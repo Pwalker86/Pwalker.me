@@ -16,6 +16,41 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_no_match @draft_post.title, response.body
   end
 
+  test "index filters published posts by tag for anonymous users" do
+    get posts_url(tag: "rails")
+
+    assert_response :success
+    assert_match @published_post.title, response.body
+    assert_no_match @draft_post.title, response.body
+    assert_no_match @other_users_draft.title, response.body
+  end
+
+  test "index tag filter is case and whitespace insensitive" do
+    get posts_url(tag: "  RAILS  ")
+
+    assert_response :success
+    assert_match @published_post.title, response.body
+  end
+
+  test "signed in users see matching drafts they own when filtering by tag" do
+    sign_in @user
+
+    get posts_url(tag: "rails")
+
+    assert_response :success
+    assert_match @published_post.title, response.body
+    assert_match @draft_post.title, response.body
+    assert_no_match @other_users_draft.title, response.body
+  end
+
+  test "index excludes posts that do not match selected tag" do
+    get posts_url(tag: "hotwire")
+
+    assert_response :success
+    assert_match @published_post.title, response.body
+    assert_no_match @draft_post.title, response.body
+  end
+
   test "show allows public access to published posts" do
     get post_url(@published_post)
 

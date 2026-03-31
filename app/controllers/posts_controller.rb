@@ -4,8 +4,13 @@ class PostsController < ApplicationController
   before_action :set_owned_post, only: %i[ edit update destroy ]
 
   def index
-    @posts = Post.published.with_rich_text_body.includes(:tags).recent_first
-    @draft_posts = current_user.posts.unpublished.with_rich_text_body.includes(:tags).recent_first if user_signed_in?
+    @current_tag = normalize_tag_param(params[:tag])
+
+    @posts = filtered_scope(Post.published.with_rich_text_body.includes(:tags)).recent_first
+
+    if user_signed_in?
+      @draft_posts = filtered_scope(current_user.posts.unpublished.with_rich_text_body.includes(:tags)).recent_first
+    end
   end
 
   def show
@@ -63,5 +68,15 @@ class PostsController < ApplicationController
 
   def post_params
     params.expect(post: [ :title, :body, :published, :tag_list ])
+  end
+
+  def filtered_scope(scope)
+    return scope if @current_tag.blank?
+
+    scope.joins(:tags).where(tags: { name: @current_tag }).distinct
+  end
+
+  def normalize_tag_param(raw_tag)
+    raw_tag.to_s.strip.downcase.presence
   end
 end
