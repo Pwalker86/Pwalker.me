@@ -1,0 +1,75 @@
+<% content_for :title, "Posts" %>
+
+<section class="sg-canvas relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-10">
+  <div aria-hidden="true" class="pointer-events-none absolute -top-16 right-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.24)_0%,rgba(245,158,11,0)_70%)]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-20 -left-12 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(30,64,175,0.18)_0%,rgba(30,64,175,0)_70%)]"></div>
+
+  <div class="relative space-y-10">
+    <header class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-3xl space-y-3">
+        <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-700">Editorial archive</p>
+        <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">Posts</h1>
+        <p class="text-base leading-8 text-slate-700 sm:text-lg">Published essays and build notes live here. Drafts stay visible only to their author.</p>
+      </div>
+
+      <% if user_signed_in? %>
+        <%= link_to "Write a post", new_post_path, class: "inline-flex min-h-11 items-center justify-center rounded-full bg-blue-900 px-5 py-2.5 text-sm font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" %>
+      <% end %>
+    </header>
+
+    <section aria-label="Published posts" class="space-y-4">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold text-slate-900 sm:text-3xl">Published</h2>
+        <p class="text-sm text-slate-600">Read by slug, designed for phone through desktop.</p>
+      </div>
+
+      <% if @posts.any? %>
+        <div class="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <% @posts.each do |post| %>
+            <article class="sg-surface group flex h-full flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Published</p>
+              <h3 class="mt-3 text-xl font-semibold leading-snug text-slate-900"><%= link_to post.title, post_path(post), class: "transition group-hover:text-blue-900" %></h3>
+              <p class="mt-3 line-clamp-4 text-sm leading-relaxed text-slate-700"><%= truncate(post.body.to_plain_text, length: 170) %></p>
+              <div class="mt-5 flex items-center justify-between gap-3 pt-4 text-sm text-slate-600">
+                <span><%= post.created_at.to_date.to_fs(:long) %></span>
+                <span class="font-medium text-blue-900 group-hover:text-blue-700"><%= link_to "Read More", post_path(post), class: "transition group-hover:text-blue-900" %></span>
+              </div>
+            </article>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="sg-surface p-6 text-sm leading-7 text-slate-700">No published posts yet.</div>
+      <% end %>
+    </section>
+
+    <% if user_signed_in? %>
+      <section aria-label="Your drafts" class="space-y-4">
+        <div class="flex items-end justify-between gap-4">
+          <h2 class="text-2xl font-semibold text-slate-900 sm:text-3xl">Your drafts</h2>
+          <p class="text-sm text-slate-600">Private until you publish them.</p>
+        </div>
+
+        <% if @draft_posts&.any? %>
+          <div class="grid gap-4 md:grid-cols-2">
+            <% @draft_posts.each do |post| %>
+              <article class="sg-surface p-5">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <span class="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-amber-900">Unpublished</span>
+                  <span class="text-sm text-slate-500">/<%= post.slug %></span>
+                </div>
+                <h3 class="mt-4 text-xl font-semibold text-slate-900"><%= link_to post.title, post_path(post) %></h3>
+                <p class="mt-3 text-sm leading-relaxed text-slate-700"><%= truncate(post.body.to_plain_text, length: 150) %></p>
+                <div class="mt-5 flex flex-wrap gap-3">
+                  <%= link_to "Preview", post_path(post), class: "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" %>
+                  <%= link_to "Edit", edit_post_path(post), class: "rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800" %>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="sg-surface p-6 text-sm leading-7 text-slate-700">You do not have any drafts yet.</div>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+</section>

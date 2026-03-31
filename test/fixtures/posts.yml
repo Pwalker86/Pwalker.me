@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+published_post:
+  title: Building with Turbo Frames
+  slug: building-with-turbo-frames
+  published: true
+  user: one
+
+draft_post:
+  title: Draft Notes on Rails
+  slug: draft-notes-on-rails
+  published: false
+  user: one
+
+other_users_draft:
+  title: Private Architecture Journal
+  slug: private-architecture-journal
+  published: false
+  user: two

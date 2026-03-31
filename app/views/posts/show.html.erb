@@ -1,0 +1,48 @@
+<% content_for :title, @post.title %>
+
+<section class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+  <article class="sg-canvas relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 right-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.2)_0%,rgba(245,158,11,0)_70%)]"></div>
+
+    <div class="relative mx-auto max-w-3xl">
+      <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span class="rounded-full px-3 py-1 font-medium <%= @post.published? ? "border border-blue-200 bg-blue-50 text-blue-900" : "border border-amber-200 bg-amber-50 text-amber-900" %>">
+          <%= @post.published? ? "Published" : "Unpublished" %>
+        </span>
+        <span class="text-slate-500">by <%= @post.user.email %></span>
+      </div>
+
+      <h1 class="mt-5 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl"><%= @post.title %></h1>
+
+      <% if @post.unpublished? %>
+        <p class="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">This draft is private and visible only to you.</p>
+      <% end %>
+
+      <div class="mt-8 max-w-none text-base leading-8 text-slate-700 [&_a]:font-medium [&_a]:text-blue-900 [&_blockquote]:border-l-4 [&_blockquote]:border-amber-500 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-800 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-semibold [&_h1]:leading-tight [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:leading-tight [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_li]:mt-2 [&_ol]:ml-6 [&_ol]:list-decimal [&_p]:mt-4 [&_pre]:mt-6 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:bg-slate-900 [&_pre]:p-4 [&_pre]:text-slate-100 [&_ul]:ml-6 [&_ul]:list-disc">
+        <%= @post.body %>
+      </div>
+    </div>
+  </article>
+
+  <aside class="sg-surface h-fit p-5 sm:p-7">
+    <h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Post details</h2>
+    <dl class="mt-4 space-y-4 text-sm text-slate-700">
+      <div>
+        <dt class="text-slate-500">Published state</dt>
+        <dd class="mt-1 font-medium text-slate-900"><%= @post.published? ? "Published" : "Unpublished" %></dd>
+      </div>
+      <div>
+        <dt class="text-slate-500">Created</dt>
+        <dd class="mt-1 font-medium text-slate-900"><%= @post.created_at.to_date.to_fs(:long) %></dd>
+      </div>
+    </dl>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= link_to "Back to posts", posts_path, class: "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" %>
+      <% if user_signed_in? && current_user == @post.user %>
+        <%= link_to "Edit post", edit_post_path(@post), class: "rounded-full bg-blue-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-800" %>
+        <%= button_to "Delete post", post_path(@post), method: :delete, form: { class: "inline-block" }, class: "rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-sm font-medium text-rose-700 transition hover:bg-rose-100" %>
+      <% end %>
+    </div>
+  </aside>
+</section>
