@@ -27,6 +27,10 @@ class Post < ApplicationRecord
     @tag_list || tags.pluck(:name).join(", ")
   end
 
+  def tag_list=(value)
+    @tag_list = value
+  end
+
   def update_tags_from_list(raw_tag_list)
     normalized_names = self.class.parse_tag_list(raw_tag_list)
     self.tags = normalized_names.map { |name| Tag.find_or_create_by!(name: name) }

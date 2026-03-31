@@ -5,12 +5,6 @@
     <div aria-hidden="true" class="pointer-events-none absolute -top-20 right-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.2)_0%,rgba(245,158,11,0)_70%)]"></div>
 
     <div class="relative mx-auto max-w-3xl">
-      <div class="flex flex-wrap items-center gap-3 text-sm">
-        <span class="rounded-full px-3 py-1 font-medium <%= @post.published? ? "border border-blue-200 bg-blue-50 text-blue-900" : "border border-amber-200 bg-amber-50 text-amber-900" %>">
-          <%= @post.published? ? "Published" : "Unpublished" %>
-        </span>
-        <span class="text-slate-500">by <%= @post.user.email %></span>
-      </div>
 
       <h1 class="mt-5 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl"><%= @post.title %></h1>
 

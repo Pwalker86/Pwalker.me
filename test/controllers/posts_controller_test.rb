@@ -109,6 +109,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_url(created_post)
   end
 
+  test "create preserves tag list when validation fails" do
+    sign_in @user
+
+    post posts_url, params: {
+      post: {
+        title: "",
+        body: "",
+        published: "0",
+        tag_list: "rails, hotwire"
+      }
+    }
+
+    assert_response :unprocessable_content
+    assert_select "input[name='post[tag_list]'][value='rails, hotwire']"
+  end
+
   test "owner can publish an existing draft" do
     sign_in @user
 

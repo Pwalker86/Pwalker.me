@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params.except(:tag_list))
+    @post.tag_list = post_params[:tag_list]
 
     if @post.save
       @post.update_tags_from_list(post_params[:tag_list])
@@ -35,6 +36,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.tag_list = post_params[:tag_list]
+
     if @post.update(post_params.except(:tag_list))
       @post.update_tags_from_list(post_params[:tag_list])
       redirect_to @post, notice: @post.published? ? "Post updated." : "Draft updated."
