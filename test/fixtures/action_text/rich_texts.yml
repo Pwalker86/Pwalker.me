@@ -1,0 +1,14 @@
+published_post_body:
+  record: published_post (Post)
+  name: body
+  body: <div><p>Published writing about Turbo Frames in production.</p></div>
+
+draft_post_body:
+  record: draft_post (Post)
+  name: body
+  body: <div><p>Unpublished notes that only the owner should see.</p></div>
+
+other_users_draft_body:
+  record: other_users_draft (Post)
+  name: body
+  body: <div><p>Second user's private draft content.</p></div>

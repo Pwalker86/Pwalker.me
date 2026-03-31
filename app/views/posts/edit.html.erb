@@ -1,0 +1,17 @@
+<% content_for :title, "Edit #{@post.title}" %>
+
+<section class="sg-canvas relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-10">
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-12 h-60 w-60 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,rgba(245,158,11,0)_70%)]"></div>
+
+  <div class="relative mx-auto max-w-3xl space-y-6">
+    <header class="space-y-3">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Refine</p>
+      <h1 class="text-4xl font-semibold leading-tight text-slate-900">Edit post</h1>
+      <p class="text-base leading-8 text-slate-700">Draft titles can still update the slug. Published posts keep their existing slug stable.</p>
+    </header>
+
+    <div class="sg-surface p-5 sm:p-7">
+      <%= render "form", post: @post %>
+    </div>
+  </div>
+</section>

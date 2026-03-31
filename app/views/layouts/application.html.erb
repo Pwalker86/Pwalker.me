@@ -27,6 +27,16 @@
     <%= render "layouts/nav" %>
 
     <main class="mx-auto w-full max-w-6xl px-5 py-10 sm:py-14">
+      <% if flash.any? %>
+        <div class="mb-6 space-y-3" aria-live="polite">
+          <% flash.each do |type, message| %>
+            <div class="rounded-2xl border px-4 py-3 text-sm shadow-sm <%= type.to_s == "notice" ? "border-blue-200 bg-blue-50 text-blue-950" : "border-amber-200 bg-amber-50 text-amber-950" %>">
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>

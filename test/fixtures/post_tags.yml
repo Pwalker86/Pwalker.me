@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+published_post_rails:
+  post: published_post
+  tag: rails
+
+published_post_hotwire:
+  post: published_post
+  tag: hotwire
+
+draft_post_design:
+  post: draft_post
+  tag: design
+
+draft_post_rails:
+  post: draft_post
+  tag: rails
+
+other_users_draft_rails:
+  post: other_users_draft
+  tag: rails
